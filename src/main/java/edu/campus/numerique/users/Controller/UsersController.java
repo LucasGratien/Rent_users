@@ -1,5 +1,4 @@
 package edu.campus.numerique.users.Controller;
-
 import edu.campus.numerique.users.model.UserNotFound;
 import edu.campus.numerique.users.model.Users;
 import edu.campus.numerique.users.service.UsersService;
