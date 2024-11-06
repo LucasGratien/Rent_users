@@ -17,11 +17,11 @@ public class Users {
     @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String firstname;
-    private String lastname;
-    private LocalDate dateofbirth;
-    private String numlicense;
-    private LocalDate datelicense;
+    private String firstName;
+    private String lastName;
+    private LocalDate dateOfBirth;
+    private String numLicense;
+    private LocalDate dateLicense;
 }
 
 

@@ -14,7 +14,7 @@ public class UsersService {
     private final UsersRepository usersRepository;
 
     @Autowired
-    public UsersService(UsersRepository usersRepository, RestTemplate restTemplate) {
+    public UsersService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 
