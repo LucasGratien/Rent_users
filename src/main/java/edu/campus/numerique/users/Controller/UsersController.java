@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,8 +57,9 @@ public class UsersController {
                     content = @Content(mediaType = "application/json"))
     })
     @GetMapping("/{id}")
-    public Users getUserById(@PathVariable int id) {
-        return usersService.findById(id).orElseThrow(UserNotFound::new);
+    public ResponseEntity<Users> getUserById(@PathVariable int id) {
+        Users user = usersService.findById(id).orElseThrow(UserNotFound::new);
+        return ResponseEntity.ok(user);
     }
 
     @Operation(summary = "Ajoute un nouveau client")
@@ -72,9 +74,11 @@ public class UsersController {
                     content = @Content(mediaType = "application/json"))
     })
     @PostMapping
-    public Users createUser(@RequestBody Users users) {
-        return usersService.save(users);
+    public ResponseEntity<Users> createUser(@RequestBody Users users) {
+        Users createdUser = usersService.save(users);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
+
 
     @Operation(summary = "Met à jour un client existant")
     @ApiResponses(value = {
@@ -101,6 +105,7 @@ public class UsersController {
                     content = @Content(mediaType = "application/json"))
     })
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable int id) {
         usersService.deleteById(id);
     }
