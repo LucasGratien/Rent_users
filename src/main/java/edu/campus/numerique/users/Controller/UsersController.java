@@ -40,6 +40,7 @@ public class UsersController {
             @ApiResponse(responseCode = "404", description = "Client non trouvé",
                     content = @Content(mediaType = "application/json"))
     })
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
     public List<Users> getAllUsers() {
         return usersService.findAll();
